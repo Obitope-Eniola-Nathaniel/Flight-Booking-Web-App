@@ -1,0 +1,26 @@
+{% extends "flights/layout.html" %}
+
+{% block body %}
+
+    <a href="{% url 'flights:index' %}">Home</a>
+    <h2>List of cities</h2>
+    <ol>
+        {% for city in airport %}
+                <li>{{city.city}} ({{ city.code}})</li>
+        {% endfor %}
+    </ol>
+
+
+    <h3>Create City</h3>
+    
+    <form action="{% url 'flights:create_city' %}" method="post">
+        {% csrf_token %}
+        <lable>City Name: </label>
+        <input type="text" name="city" />
+        <lable>City Code: </label>
+        <input type="number" name="code" />
+        <input type="submit"/>
+    </form>
+
+
+{% endblock %}
